@@ -29,8 +29,10 @@
     </div>
     <div>
         <#if usuarioLogado??>
-            Olá, ${usuarioLogado.nome}
-            <a href="/logout">Sair</a>
+            <span>Olá, ${usuarioLogado.nome}</span>
+             <form action="/logout" method="post">
+                <button type="submit">Sair</button>
+            </form>
         <#else>
             <a href="/login">Entrar</a>
         </#if>
