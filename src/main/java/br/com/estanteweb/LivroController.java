@@ -67,7 +67,11 @@ public class LivroController {
     }
 
     @GetMapping("/livros/{id}/editar")
-    public String editar(@PathVariable Long id, Model model) {
+    public String editar(@PathVariable Long id, Model model, HttpSession session) {
+        if (session.getAttribute("usuarioLogado") == null) {
+            return "redirect:/login";
+        }
+
         Livro livro = repositorio.buscarPorId(id);
 
         if (livro == null) {
@@ -75,6 +79,7 @@ public class LivroController {
         }
 
         model.addAttribute("livro", livro);
+
         return "livro-editar";
     }
 
